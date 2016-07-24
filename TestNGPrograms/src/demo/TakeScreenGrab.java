@@ -27,6 +27,7 @@ public class TakeScreenGrab {
 	@Test
 	public void grabScreen() throws IOException{
 	
+		try {
 			driver.findElement(By.name("userName")).sendKeys("mercury");
 			driver.findElement(By.name("password")).sendKeys("mercury");
 			driver.findElement(By.name("login")).click();
@@ -37,7 +38,22 @@ public class TakeScreenGrab {
 			driver.findElement(By.name("First0")).sendKeys("Deepinder"); //Test case will fail here
 			driver.findElement(By.name("passLast0")).sendKeys("Bhatti");
 			
+			}
+			
+			catch(Exception e) {
+				System.out.println("Control is in Catch block");
+				getScreenshot();  //Calling the method
+			}
+			
+		}
+		
+		public void getScreenshot() throws IOException{  //Defining the method
+			File ss = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+			FileUtils.copyFile(ss, new File("C:\\Selenium12\\NewtoursScreenshot.jpg"));
+		}
+
+			
 			
 			
 }
-}
+
